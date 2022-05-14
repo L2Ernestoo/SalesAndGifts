@@ -82,7 +82,10 @@
                                 'El producto fue registrado con exito.!',
                                 'success'
                             )
-                            location.reload()
+                            setTimeout(function (){
+                                location.reload()
+
+                            },2000);
                         })
                         .catch(error => {
                             swal.fire(
