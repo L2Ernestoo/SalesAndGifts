@@ -12,19 +12,19 @@
             <tbody>
             <tr>
                 <th scope="row">1</th>
-                <td>Pirulo</td>
+                <td>Mynor</td>
                 <td>Q300.00</td>
                 <td>Raul</td>
             </tr>
             <tr>
                 <th scope="row">2</th>
-                <td>Lorena</td>
+                <td>Erick</td>
                 <td>Q2000.00</td>
                 <td>Guido</td>
             </tr>
             <tr>
                 <th scope="row">3</th>
-                <td >Roberto</td>
+                <td>Chinito</td>
                 <td>Q1000.00</td>
                 <td>Gonzalo</td>
             </tr>
