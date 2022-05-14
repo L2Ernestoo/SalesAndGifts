@@ -17,8 +17,9 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
-    <main>
+    <main class="d-flex flex-nowrap">
         {{ $slot }}
+        <div class="b-example-divider b-example-vr"></div>
     </main>
     </body>
 </html>
