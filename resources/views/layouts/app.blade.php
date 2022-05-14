@@ -51,7 +51,7 @@
                 </li>
                 <li>
                     <a href="#" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="{{route('ver.clientes')}}"/></svg>
                         Clientes
                     </a>
                 </li>
