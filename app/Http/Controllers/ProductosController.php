@@ -19,7 +19,11 @@ class ProductosController extends Controller
 
     public function store(Request $request){
         $producto = new Productos;
-        $producto->fill($request->all())->save();
+        $producto->descripcion = $request->descripcion;
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precio;
+        $producto->stock = $request->stock;
+        $producto->save();
 
         return response()->json([
            'code' => 200,

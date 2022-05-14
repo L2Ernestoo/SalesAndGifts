@@ -36,23 +36,67 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Registrar producto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input x-model="producto.nombre" type="text" name="nombre" class="form-control" placeholder="Nombre" aria-label="Nombre">
+                        </div>
+                        <div class="col-md-6">
+                            <input x-model="producto.descripcion" type="text" name="descripcion" class="form-control" placeholder="Descripcion" aria-label="Descripcion">
+                        </div>
+                        <div class="col-md-6">
+                            <input x-model="producto.precio" type="text" name="precio" class="form-control" placeholder="Precio" aria-label="precio">
+                        </div>
+                        <div class="col-md-6">
+                            <input x-model="producto.stock" type="text" name="stock" class="form-control" placeholder="Stock" aria-label="Stock">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" @click="registrarProducto">Registrar</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('registrar_producto').addEventListener('click', function(event){
-            event.preventDefault()
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('greetingState', () => ({
+                producto: {
+                    nombre: '',
+                    descripcion: '',
+                    precio: '',
+                    stock: '',
+                },
+
+                registrarProducto(){
+                    axios
+                        .post('{{route('guardar.productos')}}', this.producto)
+                        .then(response => {
+                            swal.fire(
+                                'Producto registrado!',
+                                'El producto fue registrado con exito.!',
+                                'success'
+                            )
+                            location.reload()
+                        })
+                        .catch(error => {
+                            swal.fire(
+                                'Error!',
+                                'El producto no fue registrado con exito.!',
+                                'error'
+                            )
+
+                        })
+                        .finally(() => {
+
+                        })
+                }
+            }));
         });
     </script>
 </x-app-layout>

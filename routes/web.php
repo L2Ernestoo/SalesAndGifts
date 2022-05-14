@@ -29,4 +29,5 @@ Route::get('/clientes', [ClientesController::class, 'index'])->name('ver.cliente
 //Productos
 Route::get('/productos', [ProductosController::class, 'index'])->name('ver.productos');
 Route::get('/crear-producto', [ProductosController::class, 'create'])->name('registrar.productos');
+Route::post('/guardar-producto', [ProductosController::class, 'store'])->name('guardar.productos');
 require __DIR__.'/auth.php';
