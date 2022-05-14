@@ -26,8 +26,8 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+                    <a href="{{route('inicio')}}" class="nav-link active" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="{{route('inicio')}}"/></svg>
                         Inicio
                     </a>
                 </li>
@@ -44,13 +44,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="{{route('ver.productos')}}" class="nav-link text-white">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                         Productos
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="{{route('ver.clientes')}}" class="nav-link text-white">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="{{route('ver.clientes')}}"/></svg>
                         Clientes
                     </a>
