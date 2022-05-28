@@ -71,10 +71,11 @@
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('greetingState', () => ({
-                producto: {},
+                producto: [],
                 cantidad: null,
                 listado: [],
                 agregarProducto(){
+                    console.log(this.producto)
                     this.buscarProducto()
                 },
                 buscarProducto(){
@@ -85,12 +86,14 @@
                                 'id': response.data.id,
                                 'producto': response.data.nombre,
                                 'costou' : response.data.precio,
-                                'cantidad': this.cantidad
+                                'cantidad': this.cantidad,
+                                'total': (response.data.precio * this.cantidad)
                             }
                             this.listado.push(productoEncontrado);
 
                             productoEncontrado = null;
-
+                            this.producto = []
+                            this.cantidad = null
                         })
                         .catch(error => {
                             swal.fire(
