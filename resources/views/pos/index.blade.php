@@ -42,7 +42,11 @@
         </template>
         </tbody>
     </table>
-
+    <div class="row d-flex">
+        <div class="col-md-4">
+            <h1>Total: Q<span x-text="total"></span></h1>
+        </div>
+    </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -74,6 +78,7 @@
                 producto: [],
                 cantidad: null,
                 listado: [],
+                total: null,
                 agregarProducto(){
                     console.log(this.producto)
                     this.buscarProducto()
@@ -90,7 +95,7 @@
                                 'total': (response.data.precio * this.cantidad)
                             }
                             this.listado.push(productoEncontrado);
-
+                            this.total = this.total + productoEncontrado.total
                             productoEncontrado = null;
                             this.producto = []
                             this.cantidad = null
