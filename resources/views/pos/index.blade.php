@@ -46,27 +46,42 @@
         <div class="col-md-4">
             <h1>Total: Q<span x-text="total"></span></h1>
         </div>
+        <div class="col-md-4 align-content-end">
+            <button type="button" id="registrar_producto" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Registrar Venta</button>
+        </div>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Generar Cupon</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Registrar Venta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row g-3">
-                        <div class="col-md-12">
-                            <input x-model="producto.descripcion" type="text" name="descripcion" class="form-control" placeholder="Descripcion" aria-label="Descripcion">
+                        <div class="col-md-6">
+                            <input x-model="cliente.nit" type="text" name="nit" maxlength="20" class="form-control" placeholder="NIT" aria-label="NIT">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6">
+                            <input x-model="cliente.nombre" type="text" name="nombre" maxlength="40" class="form-control" placeholder="Nombre" aria-label="Nombre">
+                        </div>
+                        <div class="col-md-6">
+                            <input x-model="cliente.apellido" type="text" name="apellido" maxlength="40" class="form-control" placeholder="Apellido" aria-label="Apellido">
                         </div>
                         <div class="col-md-12">
-                            <input x-model="producto.monto" type="text" name="monto" class="form-control" placeholder="Monto" aria-label="Monto">
+                            <input x-model="cliente.direccion" type="text" maxlength="40" name="direccion" class="form-control" placeholder="Direccion" aria-label="Direccion">
+                        </div>
+                        <hr>
+                        <div class="col-md-12">
+                            <label for="">Si Tiene un cupon ingreselo aqui.</label>
+                            <input x-model="cupon" type="text" name="cupon" maxlength="40" class="form-control" placeholder="Cupon" aria-label="Cupon">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" @click="registrarProducto">Registrar</button>
+                    <button type="button" class="btn btn-primary" @click="registrarVenta">Registrar</button>
                 </div>
             </div>
         </div>
@@ -79,9 +94,38 @@
                 cantidad: null,
                 listado: [],
                 total: null,
+                cliente : {
+                    nit: '',
+                    nombre: '',
+                    apellido: '',
+                    direccion: '',
+                },
+                cupon : '',
+
                 agregarProducto(){
-                    console.log(this.producto)
                     this.buscarProducto()
+                },
+                registrarVenta(){
+                    axios
+                        .post('{{route('store.registrar_venta')}}', {'listado' : this.listado, 'cliente': this.cliente, 'total': this.total, 'cupon': this.cupon})
+                        .then(response => {
+                            swal.fire(
+                                'Venta Registrada',
+                                'La venta se registro con exito',
+                                'success'
+                            )
+                        })
+                        .catch(error => {
+                            swal.fire(
+                                'Error!',
+                                'Ocurrio un error.!',
+                                'error'
+                            )
+
+                        })
+                        .finally(() => {
+
+                        })
                 },
                 buscarProducto(){
                     axios
