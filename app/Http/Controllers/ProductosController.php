@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class ProductosController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index(){
         $productos = Productos::paginate(15);
         return view('productos.todos', compact('productos'));

@@ -9,6 +9,13 @@ use Illuminate\Support\Str;
 
 class TarjetasController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index(){
         $tarjetas = Tarjetas::with('estatus','usuario')->get();
         return view('tarjetas.todos', compact('tarjetas'));

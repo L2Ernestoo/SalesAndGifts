@@ -20,4 +20,12 @@ class Ventas extends Model
 
         return $this->hasOne(Clientes::class,'id','clientes_id');
     }
+
+    public function detalle(){
+        return $this->hasMany(DetalleVentas::class, 'ventas_id', 'id');
+    }
+
+    public function canjeo(){
+        return $this->hasOne(Canjeos::class, 'ventas_id', 'id');
+    }
 }

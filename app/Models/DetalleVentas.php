@@ -9,4 +9,8 @@ class DetalleVentas extends Model
 {
     use HasFactory;
     protected $table = 'detalle_ventas';
+
+    public function producto(){
+        return $this->hasOne(Productos::class, 'id', 'productos_id');
+    }
 }

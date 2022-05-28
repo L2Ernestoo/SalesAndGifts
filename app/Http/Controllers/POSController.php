@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Auth;
 
 class POSController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         $productos = Productos::all();
         return view('pos.index', compact('productos'));

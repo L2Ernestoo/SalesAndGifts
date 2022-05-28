@@ -45,4 +45,6 @@ Route::get('/ventas', [VentasController::class, 'index'])->name('index.ventas');
 Route::get('/generar-venta', [POSController::class,'index'])->name('index.generar_venta');
 Route::post('/buscar_producto', [POSController::class,'findProducto'])->name('find.buscar_producto');
 Route::post('/registrar_venta', [POSController::class,'store'])->name('store.registrar_venta');
+
+Route::get('recibo-pdf/{id}', [VentasController::class,'pdf'])->name('ver.recibo');
 require __DIR__.'/auth.php';

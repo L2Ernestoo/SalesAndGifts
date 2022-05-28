@@ -12,6 +12,7 @@
             <th scope="col">Total</th>
             <th scope="col">Cajero</th>
             <th scope="col">Fecha</th>
+            <th scope="col">Recibo</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
                 <td>Q{{number_format($venta->total,2)}}</td>
                 <td>{{$venta->cajero->name}}</td>
                 <td>{{$venta->created_at}}</td>
+                <td><a class="btn btn-info" href="{{route('ver.recibo', encrypt($venta->id))}}" target="_blank">Descargar PDF</a></td>
             </tr>
         @endforeach
         </tbody>
