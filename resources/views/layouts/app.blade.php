@@ -38,8 +38,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                    <a href="{{route('index.ventas')}}" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="{{route('index.ventas')}}"/></svg>
                         Ventas
                     </a>
                 </li>

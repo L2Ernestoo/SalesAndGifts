@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\TarjetasController;
+use App\Http\Controllers\VentasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,4 +36,10 @@ Route::get('/clientes', [ClientesController::class, 'index'])->name('ver.cliente
 Route::get('/productos', [ProductosController::class, 'index'])->name('ver.productos');
 Route::get('/crear-producto', [ProductosController::class, 'create'])->name('registrar.productos');
 Route::post('/guardar-producto', [ProductosController::class, 'store'])->name('guardar.productos');
+
+//Ventas
+Route::get('/ventas', [VentasController::class, 'index'])->name('index.ventas');
+
+//POS
+Route::get('/generar-venta');
 require __DIR__.'/auth.php';
