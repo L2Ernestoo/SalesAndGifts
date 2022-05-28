@@ -16,7 +16,7 @@ class Tarjetas extends Model
     }
 
     public function estatus(){
-        return $this->hasOne(EstatusTarjetas::class, 'id');
+        return $this->hasOne(EstatusTarjetas::class, 'id', 'estatus_tarjetas_id');
     }
 
 }
