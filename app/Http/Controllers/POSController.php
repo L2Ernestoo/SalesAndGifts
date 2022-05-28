@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Canjeos;
 use App\Models\Clientes;
 use App\Models\DetalleVentas;
 use App\Models\Productos;
+use App\Models\Tarjetas;
 use App\Models\Ventas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,11 +46,30 @@ class POSController extends Controller
         }
         $cliente = $cliente->id;
 
+        $cupon = Tarjetas::where('uid', $request->cupon)->first();
+
+        if(!empty($cupon)){
+            $total = $request->total - $cupon->valor;
+            $cupon->estatus_tarjetas_id = 2; //Canjeado
+            $cupon->save();
+
+        }else{
+            $total = $request->total;
+        }
+
         $venta = new Ventas;
-        $venta->total = $request->total;
+        $venta->total = $total;
         $venta->users_id = Auth::user()->id;
         $venta->clientes_id = $cliente;
         $venta->save();
+
+        if(!empty($cupon)){
+            $canjeo = new Canjeos;
+            $canjeo->tarjetas_de_regalo_id = $cupon->id;
+            $canjeo->clientes_id = $cliente;
+            $canjeo->ventas_id = $venta->id;
+            $canjeo->save();
+        }
 
         foreach ($request->listado as $item){
             $detalle = new DetalleVentas;
