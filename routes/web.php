@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\TarjetasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+//Tarjetas
+Route::get('/tarjetas', [TarjetasController::class,'index'])->name('ver.tarjetas');
+Route::post('/registrar-tarjeta', [TarjetasController::class,'store'])->name('registrar.tarjeta');
 
 //Clientes
 Route::get('/clientes', [ClientesController::class, 'index'])->name('ver.clientes');
