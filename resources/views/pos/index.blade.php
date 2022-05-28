@@ -18,7 +18,7 @@
                 <input type="text" class="form-control" placeholder="Cantidad">
             </div>
             <div class="col-md-4">
-                <button type="button" class="btn btn-primary">Registrar</button>
+                <button type="button" class="btn btn-primary" x-on:click="agregarProducto">Registrar</button>
             </div>
         </div>
     </div>
@@ -74,6 +74,11 @@
                 producto: {},
 
                 listado: {},
+                agregarProducto(){
+                    console.log(this.producto)
+                    console.log('----hola-----')
+                    console.log(this.listado)
+                },
                 registrarProducto(){
                     axios
                         .post('{{route('registrar.tarjeta')}}', this.producto)
