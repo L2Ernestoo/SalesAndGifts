@@ -32,8 +32,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                    <a href="{{route('index.generar_venta')}}" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="{{route('index.generar_venta')}}"/></svg>
                         POS
                     </a>
                 </li>

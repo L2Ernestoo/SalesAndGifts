@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\TarjetasController;
+use App\Http\Controllers\POSController;
 use App\Http\Controllers\VentasController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,5 +42,5 @@ Route::post('/guardar-producto', [ProductosController::class, 'store'])->name('g
 Route::get('/ventas', [VentasController::class, 'index'])->name('index.ventas');
 
 //POS
-Route::get('/generar-venta');
+Route::get('/generar-venta', [POSController::class,'index'])->name('index.generar_venta');
 require __DIR__.'/auth.php';
