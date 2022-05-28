@@ -43,4 +43,5 @@ Route::get('/ventas', [VentasController::class, 'index'])->name('index.ventas');
 
 //POS
 Route::get('/generar-venta', [POSController::class,'index'])->name('index.generar_venta');
+Route::post('/buscar_producto', [POSController::class,'findProducto'])->name('find.buscar_producto');
 require __DIR__.'/auth.php';

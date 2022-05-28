@@ -12,6 +12,15 @@ class POSController extends Controller
         return view('pos.index', compact('productos'));
     }
 
+    public function findProducto(Request $request){
+        $producto = Productos::find($request->id);
+
+        return response()->json([
+            'id' => $producto->id,
+            'nombre' => $producto->nombre,
+            'precio' => $producto->precio
+        ]);
+    }
 
 
 }

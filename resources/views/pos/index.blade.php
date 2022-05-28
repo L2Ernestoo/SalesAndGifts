@@ -15,7 +15,7 @@
                 </select>
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Cantidad">
+                <input type="text" x-model='cantidad' class="form-control" placeholder="Cantidad">
             </div>
             <div class="col-md-4">
                 <button type="button" class="btn btn-primary" x-on:click="agregarProducto">Registrar</button>
@@ -72,31 +72,30 @@
         document.addEventListener('alpine:init', () => {
             Alpine.data('greetingState', () => ({
                 producto: {},
-
-                listado: {},
+                cantidad: null,
+                listado: [],
                 agregarProducto(){
-                    console.log(this.producto)
-                    console.log('----hola-----')
-                    console.log(this.listado)
+                    this.buscarProducto()
                 },
-                registrarProducto(){
+                buscarProducto(){
                     axios
-                        .post('{{route('registrar.tarjeta')}}', this.producto)
+                        .post('{{route('find.buscar_producto')}}', {'id' : this.producto})
                         .then(response => {
-                            swal.fire(
-                                'Tarjeta Generada!',
-                                'La tarjeta de regalo fue generada y lista para usarse.!',
-                                'success'
-                            )
-                            setTimeout(function (){
-                                location.reload()
+                            let productoEncontrado = {
+                                'id': response.data.id,
+                                'producto': response.data.nombre,
+                                'costou' : response.data.precio,
+                                'cantidad': this.cantidad
+                            }
+                            this.listado.push(productoEncontrado);
 
-                            },2000);
+                            productoEncontrado = null;
+
                         })
                         .catch(error => {
                             swal.fire(
                                 'Error!',
-                                'La tarjeta no pudo generarse.!',
+                                'Ocurrio un error.!',
                                 'error'
                             )
 
