@@ -114,6 +114,9 @@
                                 'La venta se registro con exito',
                                 'success'
                             )
+                            setTimeout(function(){
+                                location.reload();
+                            },1000)
                         })
                         .catch(error => {
                             swal.fire(
